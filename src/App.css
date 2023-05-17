@@ -1,0 +1,241 @@
+.App {
+  text-align: center;
+
+}
+
+body{
+  background-color: #00DBDE;
+  background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+}
+h5{
+  width: fit-content;
+  position: relative;
+  align-self: center;
+  z-index: 100;
+}
+/*Memes*/
+h5{
+ 
+  padding:0;
+  word-wrap:normal;
+}
+.btns{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  justify-content: center;
+  margin: auto;
+}
+/* .darea{
+  position:relative;
+} */
+.movible{
+  box-shadow: 10px 5px 5px rgb(25, 214, 25);
+  text-decoration: dotted;
+  resize:both;
+  overflow:scroll;
+  width: fit-content;
+}
+.exportar{
+  width:50%;
+  z-index:1
+}
+
+/* Prueba */
+
+.grid-key{
+  position:'sticky';
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  grid-template-areas:
+      'ul u ur.'
+      'l m r.'
+      'bl b br.';
+  grid-template-rows: 32% 34% 32%;
+  grid-template-columns: 35% 36% 35%;
+  width: 112%;
+  Height: 100%;
+  overflow: hidden;
+  background-color: #cccccc;
+  border-radius: 50%;
+  border-style: groove;
+}
+.u{
+  grid-area: u;
+  background-color: transparent;
+  width:100%;
+}
+.u button{
+  border-color: transparent;
+  background-color: transparent;
+  translate: 0% 0%;
+  font-size:3em;
+}
+.u,.l,.b,.r,br,.bl,.ul,.ur, button:first-child:hover{
+  color:grey;
+}
+.l{
+  grid-area: l;
+  transform: scale(1, 2);
+  background-color: transparent;
+  text-align: left;
+  width:100%;
+
+}
+.l button{
+  border-color: transparent;
+  background-color: transparent;
+  translate: 0% 0%;
+  font-size:3em;
+}
+
+.r{
+  grid-area: r;
+  transform: scale(1, 2);
+  background-color: transparent;
+  text-align: right;
+  width:100%;
+}
+.r button {
+  border-color: transparent;
+  background-color: transparent;
+  translate: 0% 0%;
+  font-size:3em;
+}
+
+.b{
+  grid-area: b;
+  background-color: transparent;
+  width:100%;
+  border-radius: 0 0 50% 50%;
+}
+.b button{
+  border-color: transparent;
+  background-color: transparent;
+  translate: 0% 0%;
+  font-size:3em;
+}
+
+.grid-key .rotated{
+  transform: rotate(45deg);
+}
+.ul{
+  grid-area: ul;
+  background-color: transparent;
+  width:100%;
+}
+.ul button{
+  transform:rotate(-45deg);
+  border-color:transparent;
+  background-color: transparent;
+  font-size:2em;
+  translate: 20% 70%;
+}
+
+.ur{
+  grid-area: ur;
+  background-color: transparent;
+  width:100%;
+}
+.ur button{
+  transform:rotate(45deg);
+  border-color:transparent;
+  background-color: transparent;
+  font-size:2em;
+  translate: -20% 70%;
+}
+
+.br{
+  grid-area: br;
+  background-color: transparent;
+  width:100%;
+}
+.br button{
+  transform:rotate(135deg);
+  border-color:transparent;
+  background-color: transparent;
+  font-size:2em;
+  translate: -30% -20%
+}
+
+.bl{
+  grid-area: bl;
+  background-color: transparent;
+  width:100%;
+}
+.bl button{
+  transform:rotate(-135deg);
+  border-color:transparent;
+  background-color: transparent;
+  font-size:2em;
+  translate: 30% -20%;
+}
+
+.round{
+  grid-area: m;
+  width:50%;
+  height:50%;
+}
+.round button{
+  background-color: transparent;
+  border:none;
+  border-radius: 50%;
+  width:15%;
+  height:5%;
+}
+/*  */
+
+#div1, #div2,#div3{
+  width:400px;
+  height:400px;
+  background-color: grey;
+  float: left;
+  margin: 10px;
+  /*  padding: 10px; */
+  border: 1px solid black;
+}
+#cont{
+
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/**/
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
