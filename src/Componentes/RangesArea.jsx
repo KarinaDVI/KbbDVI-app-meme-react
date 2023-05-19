@@ -85,7 +85,7 @@ export default function RangesArea(
 
   return (
     
-    <div className="col m-auto w-100">
+    <div className="col mt-2 mb-2 w-75">
     <label for="posx" class="form-label">
       Posicion x
     </label>

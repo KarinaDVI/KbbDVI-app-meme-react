@@ -30,6 +30,9 @@ export default function ButtonGridArea(
           h5Ref.current.style.transformOrigin = `center`;
         }
       };
+
+
+      
       const handleRotzChange = (event) => {
         setRotz(event.target.value);
         if (h5Ref.current) {
@@ -45,10 +48,10 @@ export default function ButtonGridArea(
       };
 
   return (
-    <div className="grid-key" style={{backgroundColor: '#cccccc', position:'sticky'}}>
+    <div className="grid-key" style={{backgroundColor: '#cccccc'}}>
           <div className="u"><button id="toUp" onClick={handlePosYChange}>▲</button></div>
           <div className="l"><button id="toLeft" onClick={handlePosXChange}>◄</button></div>
-          <div className="round"></div>
+          <div className="round justify-content-center"><button className="align-self-center">R</button></div>
           <div className="r"><button id="toRight" onClick={handlePosXChange}>►</button></div>
           <div className="b"><button id="toDown" onClick={handlePosYChange}>▼</button></div>
           <div className="ul"><button id="toUpLeft">▲</button></div>

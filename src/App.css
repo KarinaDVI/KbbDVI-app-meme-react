@@ -30,10 +30,9 @@ h5{
   position:relative;
 } */
 .movible{
-  box-shadow: 10px 5px 5px rgb(25, 214, 25);
-  text-decoration: dotted;
-  resize:both;
-  overflow:scroll;
+  border:#ff0202 dotted;
+ /*  border-image:url('/public/memesImg/editar.png'),10; */
+ /*  writing-mode: horizontal-tb; */
   width: fit-content;
 }
 .exportar{
@@ -44,7 +43,6 @@ h5{
 /* Prueba */
 
 .grid-key{
-  position:'sticky';
   display: grid;
   justify-content: center;
   text-align: center;
@@ -52,14 +50,15 @@ h5{
       'ul u ur.'
       'l m r.'
       'bl b br.';
-  grid-template-rows: 32% 34% 32%;
+  grid-template-rows: 35% 36% 35%;
   grid-template-columns: 35% 36% 35%;
-  width: 112%;
-  Height: 100%;
+  width: 25%;
+  Height: 62%;
   overflow: hidden;
   background-color: #cccccc;
+  border:groove #444444 15px;
+  border-style:groove;
   border-radius: 50%;
-  border-style: groove;
 }
 .u{
   grid-area: u;
@@ -72,9 +71,22 @@ h5{
   translate: 0% 0%;
   font-size:3em;
 }
-.u,.l,.b,.r,br,.bl,.ul,.ur, button:first-child:hover{
+.u button, .l button, .b button, .r button, .br button,
+ .bl button, .ul button, .ur button{
   color:grey;
+  /* text-shadow: 0px 0px -3px #2a2a2a;
+  text-shadow: 0px 0px -3px #2a2a2a;
+  text-shadow: 0px 0px -3px #2a2a2a; */
 }
+
+.u button:hover,.l button:hover,.b button:hover,.r button:hover,
+.br button:hover,.bl button:hover,.ul button:hover,.ur button:hover{
+  color:#2a2a2a;
+  text-shadow: 0px 0px 1px grey;
+  text-shadow: 0px 0px 2px rgb(85, 85, 85);
+  text-shadow: 0px 0px 2px rgb(39, 39, 39);
+}
+
 .l{
   grid-area: l;
   transform: scale(1, 2);
@@ -174,15 +186,19 @@ h5{
 
 .round{
   grid-area: m;
-  width:50%;
-  height:50%;
 }
 .round button{
-  background-color: transparent;
-  border:none;
+  background-color: grey;
+  border:solid #444444 10px;
+  border-style:outset;
   border-radius: 50%;
-  width:15%;
-  height:5%;
+  color:#525252;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.round button:hover{
+  background-color:#292929;
 }
 /*  */
 

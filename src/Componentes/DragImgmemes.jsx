@@ -23,7 +23,7 @@ const DragImgmemes = () => {
   //de selectors
   const [sizePhotow, setSizePhotow] = useState(100);
   const [color, setColor] = useState("#ff0000");
-  const [textSize, setTextSize] = useState(16);
+  const [textSize, setTextSize] = useState(20);
   const [fontStyle, setFontStyle] = useState("Impact");
   const fontStyles = [
     "Impact",
@@ -110,27 +110,55 @@ const DragImgmemes = () => {
   };
  
 
+  // useEffect(() => {
+  //   const handleClick = (e) => {
+  //     let obj = e.target;
+  //     if (obj.tagName === "H5") {
+  //       h5Ref.current == null
+  //         ? (h5Ref.current = obj)
+  //         : h5Ref.current.classList.remove("movible");
+  //       obj.classList.toggle("movible");
+  //       obj.classList.contains("movible")
+  //         ? (h5Ref.current = obj)
+  //         : (h5Ref.current = null);
+  //     }
+  //     if (obj.tagName === "DIV") {
+  //       h5Ref.current != null
+  //         ? h5Ref.current.classList.remove("movible")
+  //         : (h5Ref.current = null);
+  //     }
+  //   };
+
+  //   document.addEventListener("click", handleClick);
+  //   // Limpieza de evento
+  //   return () => {
+  //     document.removeEventListener("click", handleClick);
+  //   };
+  // }, []);
+
   useEffect(() => {
     const handleClick = (e) => {
-      let obj = e.target;
+      const obj = e.target;
+  
       if (obj.tagName === "H5") {
-        h5Ref.current == null
-          ? (h5Ref.current = obj)
-          : h5Ref.current.classList.remove("movible");
-        obj.classList.toggle("movible");
-        obj.classList.contains("movible")
-          ? (h5Ref.current = obj)
-          : (h5Ref.current = null);
-      }
-      if (obj.tagName === "DIV") {
-        h5Ref.current != null
-          ? h5Ref.current.classList.remove("movible")
-          : (h5Ref.current = null);
+        if (h5Ref.current && h5Ref.current !== obj) {
+          h5Ref.current.classList.remove("movible");
+        }
+        h5Ref.current = obj;
+        h5Ref.current.classList.toggle("movible");
+        setTextSize(parseInt(h5Ref.current.style.fontSize));
+        setPosx(parseInt(h5Ref.current.style.left));
+        setPosy(parseInt(h5Ref.current.style.top));
+      } else if (obj.tagName === "DIV") {
+        if (h5Ref.current) {
+          h5Ref.current.classList.remove("movible");
+          h5Ref.current = null;
+        }
       }
     };
-
+  
     document.addEventListener("click", handleClick);
-    // Limpieza de evento
+  
     return () => {
       document.removeEventListener("click", handleClick);
     };
@@ -198,16 +226,6 @@ const DragImgmemes = () => {
     } 
   };
 
-  const setResize = (event) => {
-    //setTextSize(event.target.value);
-    if (h5Ref.current) {
-      h5Ref.current.style.transformOrigin = `center`;
-      h5Ref.current.style.fontSize = `${(parseFloat(
-          h5Ref.current.style.height))}px`;
-        h5Ref.current.style.width= `fit-content`;
-      setTextSize(`${parseFloat(h5Ref.current.style.height)}`);
-    }
-  };
 
   useEffect(() => {
     if (h5Ref.current) {
@@ -236,19 +254,64 @@ const DragImgmemes = () => {
     setPosy(0);
     setRotz(0);
     setColor("#ff0000");
-    setTextSize(1.125);
+    setTextSize(20);
   };
   //
   return (
-    <div className="cont-basis m-2">
-      <h1 className="mt-5 mb-3 text-light ">Editá tu propio meme</h1>
+    <div className="cont-basis">
+      <div className="row bg-warning justify-content-center">
+        <div className="col-2 mt-2 mb-2 w-25">
+        <div className="d-block w-75 m-4">
+            <label htmlFor="textSizeSelect" className="d-flex">
+              Estilo de fuente
+            </label>
+            <select
+              onChange={handleTextStyleChange}
+              className="form-select form-select-lg w-100 h-25"
+              aria-label="Default select example"
+              id="textSizeSelect"
+            >
+              {fontStyles.map((font) => (
+                <option key={font} value={font}>
+                  {font}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="d-block w-75 m-4">
+            <label for="color-picker" class="d-flex form-label">
+                Color de fuente
+              </label>
+              <input
+                className="form-control w-100"
+                type="color"
+                id="color-picker"
+                value={color}
+                onChange={handleColorChange}
+              />
+          </div>
+          <div className="d-block w-75 m-4">
+            <label for="text-size" class="d-flex form-label">
+              Tamaño de fuente
+            </label>
+            <input
+              className="form-control w-100 h-25"
+              type="number"
+              id="text-size"
+              step="1"
+              value={textSize}
+              onChange={handleTextSizeChange}
+            />
+          </div>
+              
+        </div>
+        <div className="col-8 w-50">
+        <h1 className="mt-5 mb-3 text-light">Editá tu propio meme</h1>
       <h2 className="mt-2 mb-2">Escribí tu frase</h2>
-
       <TextArea 
         setIdc={setIdc}
         idc={idc}
         drag={drag}
-        setResize={setResize}
         text={text}
         setItems={setItems}
         items={items}
@@ -257,8 +320,8 @@ const DragImgmemes = () => {
 
       {/* TextArea */}
       {/*  */}
-      <div className="row">
-      <div className="d-block  m-auto">
+      <div className="row bg-warning">
+      <div className="d-block m-auto">
         <h2 className="mt-2 mb-3">Elegí la imagen de tu meme</h2>
         <div className="d-flex justify-content-center  mb-2">
           <select
@@ -279,54 +342,12 @@ const DragImgmemes = () => {
           </button>
         </div>
       </div>
-        
-      </div>
-      <div className="row">
-      <div className="col-2 sticky-left pb-4 pt-4 bg-warning">
-          <div className="d-block w-100">
-            <label htmlFor="textSizeSelect" className="d-flex">
-              Estilo de fuente
-            </label>
-            <select
-              onChange={handleTextStyleChange}
-              className="form-select form-select-lg w-100 h-25"
-              aria-label="Default select example"
-              id="textSizeSelect"
-            >
-              {fontStyles.map((font) => (
-                <option key={font} value={font}>
-                  {font}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="d-block w-100">
-            <label for="color-picker" class="d-flex form-label">
-                Color de fuente
-              </label>
-              <input
-                className="form-control w-100"
-                type="color"
-                id="color-picker"
-                value={color}
-                onChange={handleColorChange}
-              />
-          </div>
-          <div className="d-block w-100">
-            <label for="text-size" class="d-flex form-label">
-              Tamaño de fuente
-            </label>
-            <input
-              className="form-control w-100 h-25"
-              type="number"
-              id="text-size"
-              step="0.5"
-              value={textSize}
-              onChange={handleTextSizeChange}
-            />
-          </div>
-               {/* Ranges */}
-              <RangesArea
+    </div>
+
+        </div>
+        <div className="col-2 w-25">
+                {/* Ranges */}
+                <RangesArea
                   maxW={maxW}
                   posx={posx}
                   maxH={maxH}
@@ -343,11 +364,16 @@ const DragImgmemes = () => {
                   setMaxHeight={setMaxHeight}
                   />
                   {/*  */}
-          <ButtonArea
-            handleResetClick={handleResetClick}
-            handleDelete={handleDelete}
-            />
+
+        <div className="m-2">
+            <ButtonArea
+                handleResetClick={handleResetClick}
+                handleDelete={handleDelete}
+                />
         </div>
+        </div>
+      </div>
+      <div className="row justify-content-center"> 
         <div className="col-10">
                 <ImgArea 
                 imgMeme={imgMeme} 

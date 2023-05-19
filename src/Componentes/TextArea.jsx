@@ -28,6 +28,9 @@ export default function TextArea(
                        0px 0px  2px #000000,
                        0px 0px  2px #000000`,
           fontFamily: "Impact",
+          fontSize:"20px",
+          top:'0',
+          left:'0'
         }}
       >
         {text}
@@ -41,10 +44,10 @@ export default function TextArea(
     console.log(e.target.value);
   };
   return (
-    <div className="d-flex w-10 mb-4 justify-content-center">
+    <div className="d-flex w-100 mb-4 justify-content-center">
       <input
         onChange={texto}
-        className="form-control w-50 h-25"
+        className="form-control w-50 h-100"
         type="text"
         placeholder="Pone tu frase"
         name="textMeme"
