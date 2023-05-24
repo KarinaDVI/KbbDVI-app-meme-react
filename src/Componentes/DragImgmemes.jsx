@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
-import html2canvas from "html2canvas";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import ImgArea from "./ImgArea";
 import ButtonArea from "./ButtonArea";
 import RangesArea from "./RangesArea";
 import TextArea from "./TextArea";
-import ButtonGridArea from "./ButtonGridArea";
+import StyleControls from "./StyleControls";
 
 ///Solid version
+export const Contexto = React.createContext();
 const DragImgmemes = () => {
   const [imgMeme, setImgmeme] = useState("https://i.imgflip.com/1h7in3.jpg");
   //con fetch
@@ -34,7 +34,7 @@ const DragImgmemes = () => {
   ];
 
   //
-  //Probando
+  //Refs
   const h5Ref = useRef(null);
   const imgRef = useRef(null);
   const h5ContRef = useRef(null);
@@ -58,7 +58,7 @@ const DragImgmemes = () => {
   };
   /* putText */
   /*  */
-  
+  //Al soltar despues de arrastrar
   const drop = (ev) => {
     ev.preventDefault();
     const data = ev.dataTransfer.getData("text");
@@ -89,19 +89,8 @@ const DragImgmemes = () => {
 
       // Asigna la posición al texto utilizando los valores en porcentaje (%)
 
-      posX > maxW
-        ? (draggableElement.style.left = `${maxW}%`)
-        : (draggableElement.style.left = `${posX}%`);
-      posX < minW
-        ? (draggableElement.style.left = `${minW}%`)
-        : (draggableElement.style.left = `${posX}%`);
-
-      posY > maxH
-        ? (draggableElement.style.top = `${maxH}%`)
-        : (draggableElement.style.top = `${posY}%`);
-      posY < minH
-        ? (draggableElement.style.top = `${minH}%`)
-        : (draggableElement.style.top = `${posY}%`);
+      draggableElement.style.left = `${posX > maxW ? maxW : (posX < minW ? minW : posX)}%`;
+      draggableElement.style.top = `${posY > maxH ? maxH : (posY < minH ? minH : posY)}%`;
 
       //Setea las posiciones de left y top
       setPosx(posX);
@@ -109,33 +98,6 @@ const DragImgmemes = () => {
     }
   };
  
-
-  // useEffect(() => {
-  //   const handleClick = (e) => {
-  //     let obj = e.target;
-  //     if (obj.tagName === "H5") {
-  //       h5Ref.current == null
-  //         ? (h5Ref.current = obj)
-  //         : h5Ref.current.classList.remove("movible");
-  //       obj.classList.toggle("movible");
-  //       obj.classList.contains("movible")
-  //         ? (h5Ref.current = obj)
-  //         : (h5Ref.current = null);
-  //     }
-  //     if (obj.tagName === "DIV") {
-  //       h5Ref.current != null
-  //         ? h5Ref.current.classList.remove("movible")
-  //         : (h5Ref.current = null);
-  //     }
-  //   };
-
-  //   document.addEventListener("click", handleClick);
-  //   // Limpieza de evento
-  //   return () => {
-  //     document.removeEventListener("click", handleClick);
-  //   };
-  // }, []);
-
   useEffect(() => {
     const handleClick = (e) => {
       const obj = e.target;
@@ -163,191 +125,103 @@ const DragImgmemes = () => {
       document.removeEventListener("click", handleClick);
     };
   }, []);
-
-  /* const Texto */
-
-  const seleccionarImg = (e) => {
-    setImgmeme(e.target.value);
-    const selectedUrl = e.target.value;
-    const selectedUser = users.find((user) => user.url === selectedUrl);
-    console.log(selectedUser.width);
-    
-  };
-
-  const descarga = (e) => {
-    html2canvas(document.querySelector(".exportar"), {
-      allowTaint: true,
-      useCORS: true,
-    }).then(function (canvas) {
-      let img = canvas.toDataURL("image/jpeg");
-      let link = document.createElement("a");
-      link.download = "memepropio.jpeg";
-      link.href = img;
-      link.click();
-    });
-  };
-
   //de fetch
   useEffect(() => {
     fetch("https://api.imgflip.com/get_memes")
       .then((data) => data.json())
       .then((json) => setUsers(json.data.memes));
   }, []);
-  //console.log(users);
 
-  //De selectors
   /* handleChangers */
       <RangesArea
-        maxW={maxW}
+         maxW={maxW}
         posx={posx}
         maxH={maxH}
         posy={posy}
         rotz={rotz}
         sizePhotow={sizePhotow}
-        h5Ref={h5Ref}
+        h5Ref={h5Ref} 
         />
   /*  */
  
-  
-  const handleColorChange = (event) => {
-    setColor(event.target.value);
-    if (h5Ref.current) {
-      h5Ref.current.style.color = `${color}`;
-    }
-  };
-
-  /////Esta es la que cambia los valores; revisar
-  const handleTextSizeChange = (event) => {
-      setTextSize(event.target.value);
-    if (h5Ref.current) {
-      h5Ref.current.style.transformOrigin=`center`
-      h5Ref.current.style.fontSize=`${textSize}px`;
- 
-    } 
-  };
-
-
   useEffect(() => {
     if (h5Ref.current) {
       h5Ref.current.style.width= `fit-content`;
     }
   }, []); 
-
-  const handleTextStyleChange = (event) => {
-    setFontStyle(event.target.value);
-    if (h5Ref.current.classList.contains("movible")) {
-      h5Ref.current.style.fontFamily = `${event.target.value}`;
-    }
-  };
-
-  const handleDelete = () => {
-    if (h5Ref.current) {
-      const idToDelete = h5Ref.current.id;
-      const filteredItems = items.filter((item) => item.key !== idToDelete);
-      setItems(filteredItems);
-      h5Ref.current = null;
-    }
-  };
-
-  const handleResetClick = () => {
-    setPosx(0);
-    setPosy(0);
-    setRotz(0);
-    setColor("#ff0000");
-    setTextSize(20);
-  };
   //
   return (
-    <div className="cont-basis">
-      <div className="row bg-warning justify-content-center">
-        <div className="col-2 mt-2 mb-2 w-25">
-        <div className="d-block w-75 m-4">
-            <label htmlFor="textSizeSelect" className="d-flex">
-              Estilo de fuente
-            </label>
-            <select
-              onChange={handleTextStyleChange}
-              className="form-select form-select-lg w-100 h-25"
-              aria-label="Default select example"
-              id="textSizeSelect"
-            >
-              {fontStyles.map((font) => (
-                <option key={font} value={font}>
-                  {font}
-                </option>
-              ))}
-            </select>
+ 
+    <div className="container-fluid cont-basis">
+      <div className="row bg-warning shadow-sm justify-content-center">
+      <div className="col-12 col-sm-4 col-md-4 mt-2 mb-2">
+        <div class="accordion" id="accordion1">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Estilo
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion1">
+            <div class="accordion-body w-md-50">
+               <StyleControls setColor={setColor}
+                              h5Ref={h5Ref}
+                              setTextSize={setTextSize}
+                              textSize={textSize}
+                              setFontStyle={setFontStyle}
+                              fontStyles={fontStyles}
+                              color={color}
+                />
+            </div>
           </div>
-          <div className="d-block w-75 m-4">
-            <label for="color-picker" class="d-flex form-label">
-                Color de fuente
-              </label>
-              <input
-                className="form-control w-100"
-                type="color"
-                id="color-picker"
-                value={color}
-                onChange={handleColorChange}
-              />
-          </div>
-          <div className="d-block w-75 m-4">
-            <label for="text-size" class="d-flex form-label">
-              Tamaño de fuente
-            </label>
-            <input
-              className="form-control w-100 h-25"
-              type="number"
-              id="text-size"
-              step="1"
-              value={textSize}
-              onChange={handleTextSizeChange}
-            />
-          </div>
-              
+        </div>            
         </div>
-        <div className="col-8 w-50">
-        <h1 className="mt-5 mb-3 text-light">Editá tu propio meme</h1>
-      <h2 className="mt-2 mb-2">Escribí tu frase</h2>
-      <TextArea 
-        setIdc={setIdc}
-        idc={idc}
-        drag={drag}
-        text={text}
-        setItems={setItems}
-        items={items}
-        setTextoVar={setTextoVar}
-      />
+        </div>
+
+        <div className="col-12 col-sm-6 col-md-6">
+          <h2 className="mt-2 mb-2">Escribí tu frase</h2>
+          <TextArea 
+            setIdc={setIdc}
+            idc={idc}
+            drag={drag}
+            text={text}
+            setItems={setItems}
+            items={items}
+            setTextoVar={setTextoVar}
+            h5Ref={h5Ref}
+          />
 
       {/* TextArea */}
       {/*  */}
       <div className="row bg-warning">
-      <div className="d-block m-auto">
-        <h2 className="mt-2 mb-3">Elegí la imagen de tu meme</h2>
-        <div className="d-flex justify-content-center  mb-2">
-          <select
-            onChange={seleccionarImg}
-            className="form-select form-select-lg w-50 h-25"
-            aria-label="Default select example"
-            defaultValue="Elegi tu meme"
-            ref={selectRef}
-          >
-            {users.map((user) => (
-              <option key={user.id} value={user.url}>
-                {user.name}
-              </option>
-            ))}
-          </select>
-          <button onClick={descarga} type="button" className="btn btn-primary">
-            Bajar Meme
-          </button>
-        </div>
-      </div>
+              <ButtonArea
+                  h5Ref={h5Ref}
+                  items={items}
+                  setItems={setItems}
+                  setPosx={setPosx}
+                  setPosy={setPosy}
+                  setRotz={setRotz}
+                  setColor={setColor}
+                  setTextSize={setTextSize}
+                  setImgmeme={setImgmeme}
+                  selectRef={selectRef}
+                  />
     </div>
 
         </div>
-        <div className="col-2 w-25">
-                {/* Ranges */}
-                <RangesArea
+         <div className="col-12 col-sm-2 col-md-2">
+
+                  {/* Acordeon 2 */}
+        <div class="accordion" id="accordion2">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              Posicion 
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordion2">
+            <div class="accordion-body">
+            <RangesArea
                   maxW={maxW}
                   posx={posx}
                   maxH={maxH}
@@ -362,19 +236,15 @@ const DragImgmemes = () => {
                   h5ContRef={h5ContRef}
                   setMaxWidth={setMaxWidth}
                   setMaxHeight={setMaxHeight}
-                  />
-                  {/*  */}
-
-        <div className="m-2">
-            <ButtonArea
-                handleResetClick={handleResetClick}
-                handleDelete={handleDelete}
-                />
-        </div>
+                  /> 
+              </div>
+            </div>
+          </div>            
+          </div>
         </div>
       </div>
       <div className="row justify-content-center"> 
-        <div className="col-10">
+        <div className="col-12">
                 <ImgArea 
                 imgMeme={imgMeme} 
                 imgRef={imgRef}
@@ -383,9 +253,9 @@ const DragImgmemes = () => {
                 allowDrop={allowDrop}
                 sizePhotow={sizePhotow}
                 items={items}
-                descarga={descarga}
+
                 users={users}
-                seleccionarImg={seleccionarImg}
+                setImgmeme={setImgmeme}
                 selectRef={selectRef}
                 />
             </div>

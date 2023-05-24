@@ -1,4 +1,5 @@
 import React from 'react'
+import '../gridButton.css'
 
 export default function ButtonGridArea(
     {h5Ref,h5ContRef,

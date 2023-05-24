@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-
+  overflow:hidden;
 }
 
 body{
@@ -26,9 +26,6 @@ h5{
   justify-content: center;
   margin: auto;
 }
-/* .darea{
-  position:relative;
-} */
 .movible{
   border:#ff0202 dotted;
  /*  border-image:url('/public/memesImg/editar.png'),10; */
@@ -39,168 +36,23 @@ h5{
   width:50%;
   z-index:1
 }
+/* Acordeon */
+.accordion-item {
+  background-color: #ffc107;
+  border: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
+}
+.accordion-button:not(.collapsed) {
+  color: black;
+  background-color:#ffc107;
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0 var(--bs-accordion-border-color);
+}
+.accordion-button {
+  color: var(--bs-accordion-btn-color);
+  background-color: #ffc107;
+}
+/* *********************** */
 
-/* Prueba */
 
-.grid-key{
-  display: grid;
-  justify-content: center;
-  text-align: center;
-  grid-template-areas:
-      'ul u ur.'
-      'l m r.'
-      'bl b br.';
-  grid-template-rows: 35% 36% 35%;
-  grid-template-columns: 35% 36% 35%;
-  width: 25%;
-  Height: 62%;
-  overflow: hidden;
-  background-color: #cccccc;
-  border:groove #444444 15px;
-  border-style:groove;
-  border-radius: 50%;
-}
-.u{
-  grid-area: u;
-  background-color: transparent;
-  width:100%;
-}
-.u button{
-  border-color: transparent;
-  background-color: transparent;
-  translate: 0% 0%;
-  font-size:3em;
-}
-.u button, .l button, .b button, .r button, .br button,
- .bl button, .ul button, .ur button{
-  color:grey;
-  /* text-shadow: 0px 0px -3px #2a2a2a;
-  text-shadow: 0px 0px -3px #2a2a2a;
-  text-shadow: 0px 0px -3px #2a2a2a; */
-}
-
-.u button:hover,.l button:hover,.b button:hover,.r button:hover,
-.br button:hover,.bl button:hover,.ul button:hover,.ur button:hover{
-  color:#2a2a2a;
-  text-shadow: 0px 0px 1px grey;
-  text-shadow: 0px 0px 2px rgb(85, 85, 85);
-  text-shadow: 0px 0px 2px rgb(39, 39, 39);
-}
-
-.l{
-  grid-area: l;
-  transform: scale(1, 2);
-  background-color: transparent;
-  text-align: left;
-  width:100%;
-
-}
-.l button{
-  border-color: transparent;
-  background-color: transparent;
-  translate: 0% 0%;
-  font-size:3em;
-}
-
-.r{
-  grid-area: r;
-  transform: scale(1, 2);
-  background-color: transparent;
-  text-align: right;
-  width:100%;
-}
-.r button {
-  border-color: transparent;
-  background-color: transparent;
-  translate: 0% 0%;
-  font-size:3em;
-}
-
-.b{
-  grid-area: b;
-  background-color: transparent;
-  width:100%;
-  border-radius: 0 0 50% 50%;
-}
-.b button{
-  border-color: transparent;
-  background-color: transparent;
-  translate: 0% 0%;
-  font-size:3em;
-}
-
-.grid-key .rotated{
-  transform: rotate(45deg);
-}
-.ul{
-  grid-area: ul;
-  background-color: transparent;
-  width:100%;
-}
-.ul button{
-  transform:rotate(-45deg);
-  border-color:transparent;
-  background-color: transparent;
-  font-size:2em;
-  translate: 20% 70%;
-}
-
-.ur{
-  grid-area: ur;
-  background-color: transparent;
-  width:100%;
-}
-.ur button{
-  transform:rotate(45deg);
-  border-color:transparent;
-  background-color: transparent;
-  font-size:2em;
-  translate: -20% 70%;
-}
-
-.br{
-  grid-area: br;
-  background-color: transparent;
-  width:100%;
-}
-.br button{
-  transform:rotate(135deg);
-  border-color:transparent;
-  background-color: transparent;
-  font-size:2em;
-  translate: -30% -20%
-}
-
-.bl{
-  grid-area: bl;
-  background-color: transparent;
-  width:100%;
-}
-.bl button{
-  transform:rotate(-135deg);
-  border-color:transparent;
-  background-color: transparent;
-  font-size:2em;
-  translate: 30% -20%;
-}
-
-.round{
-  grid-area: m;
-}
-.round button{
-  background-color: grey;
-  border:solid #444444 10px;
-  border-style:outset;
-  border-radius: 50%;
-  color:#525252;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.round button:hover{
-  background-color:#292929;
-}
-/*  */
 
 #div1, #div2,#div3{
   width:400px;

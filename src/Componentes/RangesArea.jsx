@@ -1,4 +1,4 @@
-import React , { useState, useEffect, useRef } from 'react'
+import React , { useState, useEffect, useRef, useContext } from 'react'
 
 export default function RangesArea(
     {h5Ref,h5ContRef,
@@ -85,7 +85,7 @@ export default function RangesArea(
 
   return (
     
-    <div className="col mt-2 mb-2 w-75">
+    <div className="mt-4 mb-2 m-auto">
     <label for="posx" class="form-label">
       Posicion x
     </label>

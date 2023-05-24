@@ -5,23 +5,26 @@ export default function TextArea(
   setIdc,
   idc,
   drag,
-  setResize,
   text,
   setItems,
   items,
-  setTextoVar
+  setTextoVar,
+  h5Ref
 }
 ) {
   const putText = () => {
     setIdc(idc + 1);
-
+    if(h5Ref.current!==null&&h5Ref.current.classList.contains("movible")){
+      h5Ref.current.textContent=text
+      console.log("Cambio de texto")
+    
+    }else{
     const newItem = (
       <h5
         id={idc}
         key={idc}
         draggable="true"
         onDragStart={drag}
-        onClick={setResize}
         style={{
           position: "absolute",
           textShadow: `0px 0px  2px #000000,
@@ -32,12 +35,13 @@ export default function TextArea(
           top:'0',
           left:'0'
         }}
-      >
-        {text}
-      </h5>
+        
+      >{text}</h5>
     );
+    
 
     setItems([...items, newItem]);
+      }
   };
   const texto = (e) => {
     setTextoVar(e.target.value);
@@ -53,7 +57,7 @@ export default function TextArea(
         name="textMeme"
       />
       <button onClick={putText} type="button" className="btn btn-primary">
-        Agregar Frase
+        Agregar/cambiar Frase
       </button>
     </div>
   );
