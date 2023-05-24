@@ -7,11 +7,7 @@ export default function ImgArea({
   h5ContRef,
   allowDrop,
   sizePhotow,
-  items,
-  descarga,
-  seleccionarImg,
-  selectRef,
-  users
+  items
 }) {
   return (
    

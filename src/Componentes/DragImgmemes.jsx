@@ -191,11 +191,10 @@ const DragImgmemes = () => {
             h5Ref={h5Ref}
           />
 
-      {/* TextArea */}
-      {/*  */}
       <div className="row bg-warning">
               <ButtonArea
                   h5Ref={h5Ref}
+                  users={users}
                   items={items}
                   setItems={setItems}
                   setPosx={setPosx}
@@ -205,13 +204,14 @@ const DragImgmemes = () => {
                   setTextSize={setTextSize}
                   setImgmeme={setImgmeme}
                   selectRef={selectRef}
+                  setSizePhotow={setSizePhotow}
                   />
     </div>
 
         </div>
          <div className="col-12 col-sm-2 col-md-2">
 
-                  {/* Acordeon 2 */}
+        {/* Acordeon 2 */}
         <div class="accordion" id="accordion2">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">

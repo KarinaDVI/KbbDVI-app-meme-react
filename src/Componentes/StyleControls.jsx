@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function StyleControls(setColor,
+export default function StyleControls({setColor,
                                       h5Ref,
                                       setTextSize,
                                       textSize,
                                       setFontStyle,
                                       fontStyles,
-                                      color) {
+                                      color}) {
 
     const handleColorChange = (event) => {
         setColor(event.target.value);
