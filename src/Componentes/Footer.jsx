@@ -17,7 +17,7 @@ export default function Footer() {
               <a className="nav-link active" >CaC 2023</a>
             </li>
             <li className="nav-item">
-              <a className="navbar-brand" href="https://www.linkedin.com/in/karina-beatriz-bouza/"><img className="w-25" src="../memesImg/in.png" alt="logo linkedin"></img></a>
+              <a className="navbar-brand" href="https://www.linkedin.com/in/karina-beatriz-bouza/"><img className="w-25" src="../memesImg/in.png" alt="Mi linkedin"></img></a>
             </li>
           </ul>
         </div>
