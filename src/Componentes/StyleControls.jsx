@@ -86,6 +86,7 @@ export default function StyleControls({setColor,
                   onChange={handleTextSizeChange}
                 />
               </div>
+              
     </div>
      </div>
      </div>

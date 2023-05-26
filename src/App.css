@@ -20,9 +20,8 @@ h5{
   padding:0;
   word-wrap:normal;
 }
-footer{
+.footer{
   background-color: #ffc107;
-  background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
 }
 .btns{
   display: flex;
@@ -65,7 +64,9 @@ footer{
   background-image: linear-gradient(309deg, #F4D03F 0%, #16A085 100%);
 
 }
-
+.margin-bottom{
+  margin-bottom:80px;
+}
 
 #div1, #div2,#div3{
   width:400px;

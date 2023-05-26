@@ -11,7 +11,7 @@ export default function ImgArea({
 }) {
   return (
    
-      <div class="card text-bg-dark exportar m-auto p-0" id="darea">
+      <div class="container-fluid card text-bg-dark exportar m-auto p-0" id="darea">
         <img
           src={imgMeme}
           className="img-fluid figure-img d-block mb-0 imgRes "

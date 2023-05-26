@@ -2,12 +2,27 @@ import React from 'react'
 
 export default function Footer() {
   return (
-        <footer class="nav pt-2 pb-2">
-            
-            <h6>Hecho por Karina Bouza</h6>
-            <p>Generador de memes</p>
-            <p><a href="https://www.linkedin.com/in/karina-beatriz-bouza/">Mi perfil linkedin:</a></p>
+ 
+    <nav className="navbar navbar-expand-lg fixed-bottom navbar-light footer">
+      <div className="container-fluid">
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" >Hecho por Karina Bouza</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link active" >CaC 2023</a>
+            </li>
+            <li className="nav-item">
+              <a className="navbar-brand" href="https://www.linkedin.com/in/karina-beatriz-bouza/"><img className="w-25" src="../memesImg/in.png" alt="logo linkedin"></img></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+</nav>
 
-        </footer>
   )
 }
