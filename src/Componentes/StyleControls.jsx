@@ -6,7 +6,10 @@ export default function StyleControls({setColor,
                                       textSize,
                                       setFontStyle,
                                       fontStyles,
-                                      color}) {
+                                      color,
+                                      sizePhotow,
+                                      setSizePhotow
+                                    }) {
 
     const handleColorChange = (event) => {
         setColor(event.target.value);
@@ -22,6 +25,8 @@ export default function StyleControls({setColor,
      
         } 
       };
+    
+    
      const handleTextStyleChange = (event) => {
         setFontStyle(event.target.value);
         if (h5Ref.current/* h5Ref.current.classList.contains("movible") */) {
@@ -29,8 +34,17 @@ export default function StyleControls({setColor,
         }
       };
   return (
-    <div>
-       <div className="d-block m-4">
+      <div class="accordion" id="accordion1">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+            >
+              Estilo
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion1">
+            <div class="accordion-body w-md-50">
+       <div className="d-flex mt-4 mb-2">
                 <label htmlFor="textSizeSelect" className="d-flex">
                   Estilo de fuente
                 </label>
@@ -47,7 +61,7 @@ export default function StyleControls({setColor,
                   ))}
                 </select>
               </div>
-              <div className="d-block m-4">
+              <div className="d-flex mt-2 mb-2">
                 <label for="color-picker" class="d-flex form-label">
                   Color de fuente
                   </label>
@@ -59,7 +73,7 @@ export default function StyleControls({setColor,
                     onChange={handleColorChange}
                   />
               </div>
-              <div className="d-block m-4">
+              <div className="d-flex mb-2">
                 <label for="text-size" class="d-flex form-label">
                   Tamaño de fuente
                 </label>
@@ -73,5 +87,8 @@ export default function StyleControls({setColor,
                 />
               </div>
     </div>
+     </div>
+     </div>
+   </div>            
   )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import html2canvas from "html2canvas";
 
 export default function TextArea(
     {
@@ -34,12 +35,11 @@ export default function TextArea(
           fontSize:"20px",
           top:'0',
           left:'0'
+
         }}
         
       >{text}</h5>
     );
-    
-
     setItems([...items, newItem]);
       }
   };
@@ -47,6 +47,19 @@ export default function TextArea(
     setTextoVar(e.target.value);
     console.log(e.target.value);
   };
+  const descarga = (e) => {
+    html2canvas(document.querySelector(".exportar"), {
+      allowTaint: true,
+      useCORS: true,
+    }).then(function (canvas) {
+      let img = canvas.toDataURL("image/jpeg");
+      let link = document.createElement("a");
+      link.download = "memepropio.jpeg";
+      link.href = img;
+      link.click();
+    });
+  };
+
   return (
     <div className="d-flex w-100 mb-4 justify-content-center">
       <input
@@ -56,9 +69,12 @@ export default function TextArea(
         placeholder="Pone tu frase"
         name="textMeme"
       />
-      <button onClick={putText} type="button" className="btn btn-primary">
-        Agregar/cambiar Frase
+      <button onClick={putText} type="button" className="btn btn-sm btn-primary">
+        Agregar / cambiar Frase
       </button>
+      <button onClick={descarga} type="button" className="btn btn-sm btn-success">
+          Bajar Meme
+        </button>
     </div>
   );
 }

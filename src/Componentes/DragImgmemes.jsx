@@ -125,24 +125,14 @@ const DragImgmemes = () => {
       document.removeEventListener("click", handleClick);
     };
   }, []);
+
+
   //de fetch
   useEffect(() => {
     fetch("https://api.imgflip.com/get_memes")
       .then((data) => data.json())
       .then((json) => setUsers(json.data.memes));
   }, []);
-
-  /* handleChangers */
-      <RangesArea
-         maxW={maxW}
-        posx={posx}
-        maxH={maxH}
-        posy={posy}
-        rotz={rotz}
-        sizePhotow={sizePhotow}
-        h5Ref={h5Ref} 
-        />
-  /*  */
  
   useEffect(() => {
     if (h5Ref.current) {
@@ -153,33 +143,36 @@ const DragImgmemes = () => {
   return (
  
     <div className="container-fluid cont-basis">
-      <div className="row bg-warning shadow-sm justify-content-center">
-      <div className="col-12 col-sm-4 col-md-4 mt-2 mb-2">
-        <div class="accordion" id="accordion1">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Estilo
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordion1">
-            <div class="accordion-body w-md-50">
-               <StyleControls setColor={setColor}
-                              h5Ref={h5Ref}
-                              setTextSize={setTextSize}
-                              textSize={textSize}
-                              setFontStyle={setFontStyle}
-                              fontStyles={fontStyles}
-                              color={color}
-                />
-            </div>
-          </div>
-        </div>            
-        </div>
-        </div>
-
-        <div className="col-12 col-sm-6 col-md-6">
-          <h2 className="mt-2 mb-2">Escribí tu frase</h2>
+      <div className="row bg-warning shadow-sm justify-content-between">
+        <div className="col">
+          <StyleControls setColor={setColor}
+            h5Ref={h5Ref}
+            setTextSize={setTextSize}
+            textSize={textSize}
+            setFontStyle={setFontStyle}
+            fontStyles={fontStyles}
+            color={color}
+      />
+      </div>
+        <div className="col-12 col-sm-4 col-md-6">
+          
+      <div className="row bg-warning">
+          <ButtonArea
+            h5Ref={h5Ref}
+            users={users}
+            items={items}
+            setItems={setItems}
+            setPosx={setPosx}
+            setPosy={setPosy}
+            setRotz={setRotz}
+            setColor={setColor}
+            setTextSize={setTextSize}
+            setImgmeme={setImgmeme}
+            selectRef={selectRef}
+            sizePhotow={sizePhotow}
+            setSizePhotow={setSizePhotow}
+            />
+            <h3 className="mt-2 mb-2">Escribí tu frase</h3>
           <TextArea 
             setIdc={setIdc}
             idc={idc}
@@ -190,77 +183,44 @@ const DragImgmemes = () => {
             setTextoVar={setTextoVar}
             h5Ref={h5Ref}
           />
-
-      <div className="row bg-warning">
-              <ButtonArea
-                  h5Ref={h5Ref}
-                  users={users}
-                  items={items}
-                  setItems={setItems}
-                  setPosx={setPosx}
-                  setPosy={setPosy}
-                  setRotz={setRotz}
-                  setColor={setColor}
-                  setTextSize={setTextSize}
-                  setImgmeme={setImgmeme}
-                  selectRef={selectRef}
-                  setSizePhotow={setSizePhotow}
-                  />
     </div>
-
         </div>
-         <div className="col-12 col-sm-2 col-md-2">
-
-        {/* Acordeon 2 */}
-        <div class="accordion" id="accordion2">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-              Posicion 
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordion2">
-            <div class="accordion-body">
-            <RangesArea
-                  maxW={maxW}
-                  posx={posx}
-                  maxH={maxH}
-                  posy={posy}
-                  rotz={rotz}
-                  sizePhotow={sizePhotow}
-                  setSizePhotow={setSizePhotow}
-                  setPosx={setPosx}
-                  setPosy={setPosy}
-                  setRotz={setRotz}
-                  h5Ref={h5Ref}
-                  h5ContRef={h5ContRef}
-                  setMaxWidth={setMaxWidth}
-                  setMaxHeight={setMaxHeight}
-                  /> 
-              </div>
-            </div>
-          </div>            
-          </div>
+         <div className="col">
+          <RangesArea
+            maxW={maxW}
+            posx={posx}
+            maxH={maxH}
+            posy={posy}
+            rotz={rotz}
+            setPosx={setPosx}
+            setPosy={setPosy}
+            setRotz={setRotz}
+            h5Ref={h5Ref}
+            h5ContRef={h5ContRef}
+            setMaxWidth={setMaxWidth}
+            setMaxHeight={setMaxHeight}
+            items={items}
+            setItems={setItems}
+            /> 
         </div>
       </div>
       <div className="row justify-content-center"> 
         <div className="col-12">
-                <ImgArea 
-                imgMeme={imgMeme} 
-                imgRef={imgRef}
-                h5ContRef={h5ContRef}
-                drop={drop}
-                allowDrop={allowDrop}
-                sizePhotow={sizePhotow}
-                items={items}
-
-                users={users}
-                setImgmeme={setImgmeme}
-                selectRef={selectRef}
-                />
-            </div>
+          <ImgArea 
+            imgMeme={imgMeme} 
+            imgRef={imgRef}
+            h5ContRef={h5ContRef}
+            drop={drop}
+            allowDrop={allowDrop}
+            sizePhotow={sizePhotow}
+            items={items}
+            users={users}
+            setImgmeme={setImgmeme}
+            selectRef={selectRef}
+            />
         </div>
-    </div>
+      </div>
+  </div>
   );
 };
 export default DragImgmemes;

@@ -1,10 +1,8 @@
 
 import './App.css';
-import Descargado from './Componentes/Descargado';
  import DragImgmemes from './Componentes/DragImgmemes';
-import EjemploDrag from './Componentes/EjemploDrag';
-import Peliculas from './Componentes/Peliculas';
 import Header from './Componentes/Header';
+import Footer from './Componentes/Footer';
 
 function App() {
   return (
@@ -12,7 +10,8 @@ function App() {
       
       {/* <Descargado/>*/}
       <Header/>
-     <DragImgmemes/> 
+     <DragImgmemes/>
+     <Footer/> 
       {/*<EjemploDrag/>*/}
 
       {/* <ImgMemes2/> */}
